@@ -1,0 +1,43 @@
+#header {
+    text-align: center;
+}
+
+#etch-div {
+    display: flex;
+    padding: 50px;
+}
+
+#etch-menu {
+    border: 2px solid red;
+    width: 300px;
+    height: 500px;
+    flex: 0 0 auto;
+}
+
+
+#etch-area {
+    border: 2px solid red;
+    width: 500px;
+    height: 500px;
+    flex: 1 1 auto;
+    padding: 50px;
+
+}
+.etchRow {
+    justify-content: center;
+    align-items: center;
+}
+
+.debug-border {
+    border: 2px solid purple;
+    width: 30px;
+    height: 30px;
+}
+
+.etchRow {
+    display: flex;
+}
+
+.fill {
+    background-color: black;
+}
