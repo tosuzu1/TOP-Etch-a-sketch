@@ -27,6 +27,7 @@ function generateGrid (gridLength)
             rowDiv.appendChild(iDiv);
             // add event for filling when mouse click and drag
             iDiv.addEventListener("mousedown", e => {
+                // prevent user from grabbing element
                 e.preventDefault();
                 e.target.classList.add(`fill`)
             });
