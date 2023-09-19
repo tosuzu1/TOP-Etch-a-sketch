@@ -1,34 +1,44 @@
-const GRID_HEIGHT = 16
-const GRID_WIDTH = 16
+let gridLength = 16;
+
+const gridInput = document.querySelector("#grid-size");
+gridInput.addEventListener("input", (event) => {
+    console.log(event.target.value);
+    contentDiv.replaceChildren();
+    generateGrid(event.target.value)
+});
 
 // Create the grid area
 const contentDiv = document.querySelector('#etch-area');
 
-for (let i = 0; i < GRID_WIDTH ; i++ ) {
-    let rowDiv = document.createElement('div');
-    rowDiv.id = `etchRow${i}`
-    rowDiv.classList.add(`etchRow`)
-    contentDiv.appendChild(rowDiv)
+function generateGrid (gridLength)
+{
+    for (let i = 0; i < gridLength ; i++ ) {
+        let rowDiv = document.createElement('div');
+        rowDiv.id = `etchRow${i}`
+        rowDiv.classList.add(`etchRow`)
+        contentDiv.appendChild(rowDiv)
 
-    for(let j = 0; j < GRID_WIDTH; j ++) {
-        let iDiv = document.createElement('div');
-        iDiv.id = 'block';
-        iDiv.setAttribute(`id`,`block${i}-${j}`);
-        iDiv.classList.add(`block`);
-        iDiv.classList.add(`debug-border`);
-        rowDiv.appendChild(iDiv);
-        // add event for filling when mouse click and drag
-        iDiv.addEventListener("mousedown", e => {
-            e.preventDefault();
-            e.target.classList.add(`fill`)
-        });
-        iDiv.addEventListener("mouseenter", e => {
-            if (isMouseButtonDown) {
-                e.target.classList.add(`fill`);
-            }
-        });
+        for(let j = 0; j < gridLength; j ++) {
+            let iDiv = document.createElement('div');
+            iDiv.id = 'block';
+            iDiv.setAttribute(`id`,`block${i}-${j}`);
+            iDiv.classList.add(`block`);
+            iDiv.classList.add(`debug-border`);
+            rowDiv.appendChild(iDiv);
+            // add event for filling when mouse click and drag
+            iDiv.addEventListener("mousedown", e => {
+                e.preventDefault();
+                e.target.classList.add(`fill`)
+            });
+            iDiv.addEventListener("mouseenter", e => {
+                if (isMouseButtonDown) {
+                    e.target.classList.add(`fill`);
+                }
+            });
+        }
     }
 }
+generateGrid(gridLength);
 
 // Create the clear screen effect for etch 
 let etchClearButton = document.querySelector(`#etch-clear`);
