@@ -1,9 +1,8 @@
 const GRID_HEIGHT = 16
 const GRID_WIDTH = 16
 
-
+// Create the grid area
 const contentDiv = document.querySelector('#etch-area');
-// contentDiv.appendChild(iDiv);
 
 for (let i = 0; i < GRID_WIDTH ; i++ ) {
     let rowDiv = document.createElement('div');
@@ -21,3 +20,17 @@ for (let i = 0; i < GRID_WIDTH ; i++ ) {
         iDiv.addEventListener("click", e => (e.target.classList.add(`fill`)));
     }
 }
+
+// Create the clear screen effect for etch 
+let etchClearButton = document.querySelector(`#etch-clear`);
+etchClearButton.addEventListener("click", clearScreen);
+
+function clearScreen (e) {
+    const filledItem = document.querySelectorAll(`.fill`);
+    filledItem.forEach(e => e.classList.remove("fill"));
+}
+
+// this section track the state of the mouse button, used for hover effect
+let isMouseButtonDown = false;
+window.addEventListener( "mousedown", event => isMouseButtonDown = true);
+window.addEventListener( "mouseup", event =>  isMouseButtonDown = false);
