@@ -17,7 +17,16 @@ for (let i = 0; i < GRID_WIDTH ; i++ ) {
         iDiv.classList.add(`block`);
         iDiv.classList.add(`debug-border`);
         rowDiv.appendChild(iDiv);
-        iDiv.addEventListener("click", e => (e.target.classList.add(`fill`)));
+        // add event for filling when mouse click and drag
+        iDiv.addEventListener("mousedown", e => {
+            e.preventDefault();
+            e.target.classList.add(`fill`)
+        });
+        iDiv.addEventListener("mouseenter", e => {
+            if (isMouseButtonDown) {
+                e.target.classList.add(`fill`);
+            }
+        });
     }
 }
 
@@ -32,5 +41,9 @@ function clearScreen (e) {
 
 // this section track the state of the mouse button, used for hover effect
 let isMouseButtonDown = false;
-window.addEventListener( "mousedown", event => isMouseButtonDown = true);
+window.addEventListener( "mousedown", event => {
+    // Prevent mouse from grabbing 
+    // event.preventDefault();
+    isMouseButtonDown = true;
+});
 window.addEventListener( "mouseup", event =>  isMouseButtonDown = false);
